@@ -6,6 +6,7 @@ let { ClientData } = require("../models/client");
 let { eventdata } = require("../models/models"); 
 
 //GET all entries
+//hello
 router.get("/", (req, res, next) => { 
     ClientData.find( 
         (error, data) => {
