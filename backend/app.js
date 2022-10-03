@@ -26,21 +26,27 @@ mongoose
 //declare port number for the api
 const PORT = process.env.PORT || 3000;
 
+
 //setup
 app.use(express.json());
 app.use(morgan("dev"));
 
 //import routes
-const primaryDataRoute  = require('./routes/primaryData');
+const clientDataRoute  = require('./routes/clientData');
 const eventsDataRoute  = require('./routes/eventsData');
+const organizationDataRoute  = require('./routes/organizationData');
+const attendeeDataRoute  = require('./routes/attendeeData');
 
 //setup middle ware for routes
-app.use('/primaryData', primaryDataRoute);
-app.use('/eventData', eventsDataRoute)
+app.use('/clientData', clientDataRoute);
+app.use('/eventData', eventsDataRoute);
+app.use('/organizationData', organizationDataRoute);
+app.use('/attendeeData', attendeeDataRoute);
 
 app.listen(PORT, () => {
   console.log("Server started listening on port : ", PORT);
 });
+
 
 //error handler
 app.use(function (err, req, res, next) {

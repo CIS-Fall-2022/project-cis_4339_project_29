@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router(); 
 
 //importing data model schemas
-let { primarydata } = require("../models/models"); 
+let { ClientData } = require("../models/client"); 
 let { eventdata } = require("../models/models"); 
 
 //GET all entries
 router.get("/", (req, res, next) => { 
-    primarydata.find( 
+    ClientData.find( 
         (error, data) => {
             if (error) {
                 return next(error);
@@ -18,10 +18,10 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
-//GET single entry by ID
+//GET client by ID
 router.get("/id/:id", (req, res, next) => {
-    primarydata.find( 
-        { _id: req.params.id }, 
+    ClientData.find( 
+        { clientID: req.params.id }, 
         (error, data) => {
             if (error) {
                 return next(error);
@@ -43,7 +43,7 @@ router.get("/search/", (req, res, next) => {
             "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`, $options: "i" }
         }
     };
-    primarydata.find( 
+    ClientData.find( 
         dbQuery, 
         (error, data) => { 
             if (error) {
@@ -62,7 +62,7 @@ router.get("/events/:id", (req, res, next) => {
 
 //POST
 router.post("/", (req, res, next) => { 
-    primarydata.create( 
+    ClientData.create( 
         req.body,
         (error, data) => { 
             if (error) {
@@ -72,15 +72,15 @@ router.post("/", (req, res, next) => {
             }
         }
     );
-    primarydata.createdAt;
-    primarydata.updatedAt;
-    primarydata.createdAt instanceof Date;
+    ClientData.createdAt;
+    ClientData.updatedAt;
+    ClientData.createdAt instanceof Date;
 });
 
 //PUT update (make sure req body doesn't have the id)
 router.put("/:id", (req, res, next) => { 
-    primarydata.findOneAndUpdate( 
-        { _id: req.params.id }, 
+    ClientData.findOneAndUpdate( 
+        { clientID: req.params.id }, 
         req.body,
         (error, data) => {
             if (error) {
@@ -90,6 +90,20 @@ router.put("/:id", (req, res, next) => {
             }
         }
     );
+});
+
+//DELETE client by clientID
+router.delete('/:id', (req, res, next) => {
+    ClientData.findOneAndRemove({ clientID: req.params.id }, (error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.status(200).json({
+                msg: data
+            });
+            res.send('Client is deleted');
+        }
+    });
 });
 
 module.exports = router;
