@@ -94,7 +94,7 @@ router.put("/:id", (req, res, next) => {
     );
 });
 
-//PUT add attendee to event
+//PUT add attendee to event using clinetID
 router.put("/addAttendee/:id", (req, res, next) => {
     //only add attendee if not yet signed uo
     EventData.find( 
