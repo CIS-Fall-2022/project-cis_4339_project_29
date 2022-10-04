@@ -99,9 +99,8 @@ router.delete('/:id', (req, res, next) => {
             return next(error);
         } else {
             res.status(200).json({
-                msg: data
+                msg: ('Client is deleted')
             });
-            res.send('Client is deleted');
         }
     });
 });

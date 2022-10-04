@@ -125,4 +125,17 @@ router.put("/addAttendee/:id", (req, res, next) => {
     
 });
 
+//DELETE event by eventID
+router.delete('/:id', (req, res, next) => {
+    EventData.findOneAndRemove({ eventID: req.params.id }, (error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.status(200).json({
+                msg: ('Event is deleted')
+            });
+        }
+    });
+});
+
 module.exports = router;
