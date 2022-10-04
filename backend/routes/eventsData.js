@@ -94,7 +94,7 @@ router.put("/:id", (req, res, next) => {
     );
 });
 
-//PUT add attendee to event
+//PUT add attendee to event using clinetID
 router.put("/addAttendee/:id", (req, res, next) => {
     //only add attendee if not yet signed uo
     EventData.find( 
@@ -123,6 +123,19 @@ router.put("/addAttendee/:id", (req, res, next) => {
         }
     );
     
+});
+
+//DELETE event by eventID
+router.delete('/:id', (req, res, next) => {
+    EventData.findOneAndRemove({ eventID: req.params.id }, (error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.status(200).json({
+                msg: ('Event is deleted')
+            });
+        }
+    });
 });
 
 module.exports = router;
