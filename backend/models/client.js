@@ -23,6 +23,11 @@ let clientDataSchema = new Schema({
     phoneNumber: {
         type: String,
         required: true
+    },
+    organizationID: {
+        type: Number,
+        require: true,
+        unique: true
     }
 }, {
     collection: 'clientData',
