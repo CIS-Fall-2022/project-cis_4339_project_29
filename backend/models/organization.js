@@ -16,15 +16,7 @@ let organizationDataSchema = new Schema({
     description: {
         type: String,
         require: true
-    },
-    clients: [{
-        type: mongoose.Schema.Types.Number,
-        ref: 'clientData'
-      }],
-    events: [{
-        type: mongoose.Schema.Types.Number,
-        ref: 'eventData'
-      }],
+    }
 }, {
     collection: 'organizationData',
     timestamps: true
