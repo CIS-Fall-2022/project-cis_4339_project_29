@@ -19,9 +19,6 @@ let eventDataSchema = new Schema({
         type: mongoose.Schema.Types.Number,
         ref: 'OrganizationData'
     },
-    // services: {
-    //     type: Array
-    // },
     date: {
         type: Date,
         required: true
@@ -46,10 +43,6 @@ let eventDataSchema = new Schema({
     description: {
         type: String,
     },
-    // attendees: [{
-    //     type: mongoose.Schema.Types.Number,
-    //     ref: 'ClientData'
-    // }]
     attendees: {
         type: [Number],
         unique: true
