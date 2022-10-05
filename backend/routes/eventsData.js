@@ -109,7 +109,6 @@ router.put("/addAttendee/:id", (req, res, next) => {
                         { $push: { attendees: req.body.clientID } },
                         (error, data) => {
                             if (error) {
-                                consol
                                 return next(error);
                             } else {
                                 res.send('Client is added to event.');
