@@ -17,6 +17,10 @@ let clientDataSchema = new Schema({
         type: String,
         required: true
     },
+    signUpDate: {
+        type: Date,
+        required: true
+    },
     email: {
         type: String
     },
