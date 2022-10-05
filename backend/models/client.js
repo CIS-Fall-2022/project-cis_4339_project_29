@@ -26,8 +26,7 @@ let clientDataSchema = new Schema({
     },
     organizationID: {
         type: Number,
-        require: true,
-        unique: true
+        required: true
     }
 }, {
     collection: 'clientData',
