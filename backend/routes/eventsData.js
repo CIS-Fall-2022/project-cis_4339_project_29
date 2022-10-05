@@ -62,6 +62,7 @@ router.get("/search/", (req, res, next) => {
     );
 });
 
+
 //GET events for which a client is signed up
 router.get("/client/:id", (req, res, next) => { 
     EventData.find( 
