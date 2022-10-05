@@ -17,6 +17,17 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
+//GET event by eventID
+router.get("/eventid/:id", (req, res, next) => { 
+    EventData.find({ eventID: req.params.id }, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+});
+
 //GET single entry by ID
 router.get("/id/:id", (req, res, next) => { 
     EventData.find({ _id: req.params.id }, (error, data) => {
@@ -65,6 +76,56 @@ router.get("/client/:id", (req, res, next) => {
     );
 });
 
+// variable that gets durrent date
+var today = new Date();
+console.log(today)
+var Months = new Date();
+var twoMonthsAgo = new Date(Months.setMonth(Months.getMonth()-2));
+console.log(twoMonthsAgo)
+console.log(today)
+
+//GET number of attendees for Events from last 2 months
+router.get("/count", (req, res, next) => { 
+    EventData.find(
+        { createdAt: {$gte: twoMonthsAgo, $lt: today}}, 
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                EventData.aggregate(
+                    [{$project:{"eventName": 1, "eventID": 1,
+                     "Number of Attendees":{$size:"$attendees"}}}],
+                    (error, data) => { 
+                        if (error) {
+                            return next(error);
+                        } else {
+                            res.json(data);
+                        }
+                    }
+                );
+            }
+        }
+    );
+});
+
+// ).sort({ 'updatedAt': -1 }).limit(10);
+
+//Get number of attendees test
+router.get("/count1", (req, res, next) => { 
+    EventData.aggregate(
+        [{$project:{"eventName": 1, "eventID": 1,
+         "Number of Attendees":{$size:"$attendees"}}}],
+        (error, data) => { 
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    );
+});
+
+
 //POST
 router.post("/", (req, res, next) => { 
     EventData.create( 
@@ -108,8 +169,7 @@ router.put("/addAttendee/:id", (req, res, next) => {
                         { eventID: req.params.id }, 
                         { $push: { attendees: req.body.clientID } },
                         (error, data) => {
-                            if (error) {
-                                consol
+                            if (error) {                                
                                 return next(error);
                             } else {
                                 res.send('Client is added to event.');
@@ -122,7 +182,6 @@ router.put("/addAttendee/:id", (req, res, next) => {
             }
         }
     );
-    
 });
 
 //DELETE event by eventID

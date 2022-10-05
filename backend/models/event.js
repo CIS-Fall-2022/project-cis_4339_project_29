@@ -46,16 +46,12 @@ let eventDataSchema = new Schema({
     description: {
         type: String,
     },
-    // attendees: [{
-    //     type: mongoose.Schema.Types.Number,
-    //     ref: 'ClientData'
-    // }]
     attendees: {
-        type: [Number],
-        unique: true
+        type: [Number]
     }
 }, {
-    collection: 'eventData'
+    collection: 'eventData',
+    timestamps: true
 });
 
 const EventData = mongoose.model('eventData', eventDataSchema);
