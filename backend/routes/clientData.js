@@ -85,7 +85,7 @@ router.put("/:id", (req, res, next) => {
             if (error) {
                 return next(error);
             } else {
-                res.json(data);
+                res.send('Client succesfully updated.');
             }
         }
     );
@@ -102,6 +102,14 @@ router.delete('/:id', (req, res, next) => {
             });
         }
     });
+});
+
+// error handler
+router.use(function (err, req, res, next) {
+    console.error(err.message);
+    if (!err.statusCode) 
+        err.statusCode = 500;
+    res.status(err.statusCode).send(err.message);
 });
 
 module.exports = router;

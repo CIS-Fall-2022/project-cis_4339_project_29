@@ -79,11 +79,9 @@ router.get("/client/:id", (req, res, next) => {
 
 // variable that gets durrent date
 var today = new Date();
-console.log(today)
 var Months = new Date();
 var twoMonthsAgo = new Date(Months.setMonth(Months.getMonth()-2));
-console.log(twoMonthsAgo)
-console.log(today)
+
 
 //GET number of attendees for Events from last 2 months
 router.get("/count", (req, res, next) => { 
@@ -94,7 +92,7 @@ router.get("/count", (req, res, next) => {
                 return next(error);
             } else {
                 EventData.aggregate(
-                    [{$project:{"eventName": 1, "eventID": 1,
+                    [{$project:{"_id": 0, "eventName": 1, "eventID": 1,
                      "Number of Attendees":{$size:"$attendees"}}}],
                     (error, data) => { 
                         if (error) {
@@ -104,23 +102,6 @@ router.get("/count", (req, res, next) => {
                         }
                     }
                 );
-            }
-        }
-    );
-});
-
-// ).sort({ 'updatedAt': -1 }).limit(10);
-
-//Get number of attendees test
-router.get("/count1", (req, res, next) => { 
-    EventData.aggregate(
-        [{$project:{"eventName": 1, "eventID": 1,
-         "Number of Attendees":{$size:"$attendees"}}}],
-        (error, data) => { 
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
             }
         }
     );
@@ -144,13 +125,13 @@ router.post("/", (req, res, next) => {
 //PUT update event
 router.put("/:id", (req, res, next) => {
     EventData.findOneAndUpdate(
-        { _id: req.params.id },
+        { eventID: req.params.id },
         req.body,
         (error, data) => {
             if (error) {
                 return next(error);
             } else {
-                res.json(data);
+                res.send('Event succesfully updated.');
             }
         }
     );
