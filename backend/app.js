@@ -45,7 +45,6 @@ app.listen(PORT, () => {
   console.log("Server started listening on port : ", PORT);
 });
 
-
 //error handler
 app.use(function (err, req, res, next) {
   // logs error and error code to console
