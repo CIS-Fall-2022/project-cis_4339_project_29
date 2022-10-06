@@ -85,7 +85,7 @@ router.put("/:id", (req, res, next) => {
             if (error) {
                 return next(error);
             } else {
-                res.json(data);
+                res.send('Client succesfully updated.');
             }
         }
     );
