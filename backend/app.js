@@ -31,11 +31,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(morgan("dev"));
 
+//Changed by Zachary Blackwell
 //import routes
 const clientDataRoute  = require('./routes/clientData');
 const eventsDataRoute  = require('./routes/eventsData');
 const organizationDataRoute  = require('./routes/organizationData');
 
+//Changed by Zachary Blackwell
 //setup middle ware for routes
 app.use('/clientData', clientDataRoute);
 app.use('/eventData', eventsDataRoute);

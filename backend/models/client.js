@@ -2,6 +2,7 @@ const uuid = require('uuid');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+//Worked on by entire team
 let clientDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
     clientID: {

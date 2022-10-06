@@ -84,6 +84,7 @@ var twoMonthsAgo = new Date(Months.setMonth(Months.getMonth()-2));
 
 
 //GET number of attendees for Events from last 2 months
+// Created by Zachary Blackwell
 router.get("/count", (req, res, next) => { 
     EventData.find(
         { createdAt: {$gte: twoMonthsAgo, $lt: today}}, 
@@ -138,6 +139,7 @@ router.put("/:id", (req, res, next) => {
 });
 
 //PUT add attendee to event using clinetID
+// Created by Zachary Blackwell
 router.put("/addAttendee/:id", (req, res, next) => {
     //only add attendee if not yet signed uo
     EventData.find( 
@@ -166,6 +168,7 @@ router.put("/addAttendee/:id", (req, res, next) => {
     );
 });
 
+// Created by Zachary Blackwell
 //DELETE event by eventID
 router.delete('/:id', (req, res, next) => {
     EventData.findOneAndRemove({ eventID: req.params.id }, (error, data) => {
