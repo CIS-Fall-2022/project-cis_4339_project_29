@@ -2,7 +2,11 @@
 
 Requirements:
 
-This project uses NodeJS and MongoDB.
+This project uses NodeJS and MongoDB. 
+
+## API Documentation 
+
+POSTMAN: < Insert Documentation Link > 
 
 ## Backend Node Application
 ```
