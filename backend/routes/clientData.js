@@ -77,6 +77,7 @@ router.post("/", (req, res, next) => {
 });
 
 //PUT update (make sure req body doesn't have the id)
+// Created by Zachary Blackwell
 router.put("/:id", (req, res, next) => { 
     ClientData.findOneAndUpdate( 
         { clientID: req.params.id }, 
@@ -92,6 +93,7 @@ router.put("/:id", (req, res, next) => {
 });
 
 //DELETE client by clientID
+// Created by Zachary Blackwell
 router.delete('/:id', (req, res, next) => {
     ClientData.findOneAndRemove({ clientID: req.params.id }, (error, data) => {
         if (error) {
