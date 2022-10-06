@@ -5,6 +5,7 @@ const router = express.Router();
 let { EventData } = require("../models/event"); 
 
 //GET all entries
+// Created by Rahman Ali
 router.get("/", (req, res, next) => { 
     EventData.find( 
         (error, data) => {
