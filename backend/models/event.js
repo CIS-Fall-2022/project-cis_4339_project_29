@@ -19,6 +19,9 @@ let eventDataSchema = new Schema({
         type: mongoose.Schema.Types.Number,
         ref: 'OrganizationData'
     },
+    services:{
+        type: Array
+    },
     date: {
         type: Date,
         required: true
