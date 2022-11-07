@@ -21,13 +21,17 @@ let clientDataSchema = new Schema({
     email: {
         type: String
     },
-    phoneNumber: {
-        type: String,
-        required: true
+    phoneNumbers: {
+        primaryPhone: {
+        type: Number,
+        unique: true
+        },
+        secondaryPhone: {
+        type: Number
+        }
     },
     organizationID: {
         type: Number,
-        required: true
     }
 }, {
     collection: 'clientData',
