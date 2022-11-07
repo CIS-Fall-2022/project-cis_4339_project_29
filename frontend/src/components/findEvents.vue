@@ -98,7 +98,7 @@ export default {
     };
   },
   mounted() {
-    let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/`;
+    let apiURL = "http://localhost:6002/eventData/";
     this.queryData = [];
     axios.get(apiURL).then((resp) => {
       this.queryData = resp.data;
