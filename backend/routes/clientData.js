@@ -5,6 +5,7 @@ const router = express.Router();
 let { ClientData } = require("../models/client"); 
 
 //GET all entries
+// Created by Rahman Ali
 router.get("/", (req, res, next) => { 
     ClientData.find( 
         (error, data) => {
@@ -18,6 +19,7 @@ router.get("/", (req, res, next) => {
 });
 
 //GET client by ID
+// Created by Rahman Ali
 router.get("/id/:id", (req, res, next) => {
     ClientData.find( 
         { clientID: req.params.id }, 
@@ -107,6 +109,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 // error handler
+// Created By Joe Morris 
 router.use(function (err, req, res, next) {
     console.error(err.message);
     if (!err.statusCode) 

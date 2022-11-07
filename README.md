@@ -6,7 +6,7 @@ This project uses NodeJS and MongoDB.
 
 ## API Documentation 
 
-POSTMAN: < Insert Documentation Link > 
+POSTMAN: https://documenter.getpostman.com/view/19700024/2s83zdx74v
 
 ## Backend Node Application
 ```

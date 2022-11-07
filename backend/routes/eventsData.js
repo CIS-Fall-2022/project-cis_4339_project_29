@@ -5,6 +5,7 @@ const router = express.Router();
 let { EventData } = require("../models/event"); 
 
 //GET all entries
+// Created by Rahman Ali
 router.get("/", (req, res, next) => { 
     EventData.find( 
         (error, data) => {
@@ -18,6 +19,7 @@ router.get("/", (req, res, next) => {
 });
 
 //GET event by eventID
+// Created By Joe Morris 
 router.get("/eventid/:id", (req, res, next) => { 
     EventData.find({ eventID: req.params.id }, (error, data) => {
         if (error) {
@@ -29,6 +31,7 @@ router.get("/eventid/:id", (req, res, next) => {
 });
 
 //GET single entry by ID
+// Created By Joe Morris 
 router.get("/id/:id", (req, res, next) => { 
     EventData.find({ _id: req.params.id }, (error, data) => {
         if (error) {
@@ -41,6 +44,7 @@ router.get("/id/:id", (req, res, next) => {
 
 //GET entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
+// Created By Joe Morris 
 router.get("/search/", (req, res, next) => { 
     let dbQuery = "";
     if (req.query["searchBy"] === 'name') {
@@ -64,6 +68,7 @@ router.get("/search/", (req, res, next) => {
 
 
 //GET events for which a client is signed up
+// Created By Joe Morris 
 router.get("/client/:id", (req, res, next) => { 
     EventData.find( 
         { attendees: req.params.id }, 
@@ -110,6 +115,7 @@ router.get("/count", (req, res, next) => {
 
 
 //POST
+// Created By Joe Morris 
 router.post("/", (req, res, next) => { 
     EventData.create( 
         req.body, 
@@ -124,6 +130,7 @@ router.post("/", (req, res, next) => {
 });
 
 //PUT update event
+// Created By Joe Morris 
 router.put("/:id", (req, res, next) => {
     EventData.findOneAndUpdate(
         { eventID: req.params._id},
@@ -183,6 +190,7 @@ router.delete('/:id', (req, res, next) => {
 });
 
 // error handler
+// Created By Joe Morris 
 router.use(function (err, req, res, next) {
     console.error(err.message);
     if (!err.statusCode) 
