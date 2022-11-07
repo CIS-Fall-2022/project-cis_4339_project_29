@@ -126,7 +126,7 @@ router.post("/", (req, res, next) => {
 //PUT update event
 router.put("/:id", (req, res, next) => {
     EventData.findOneAndUpdate(
-        { eventID: req.params.id },
+        { eventID: req.params._id},
         req.body,
         (error, data) => {
             if (error) {

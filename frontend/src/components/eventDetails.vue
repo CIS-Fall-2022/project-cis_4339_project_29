@@ -291,7 +291,7 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                `/primarydata/id/${this.attendeeIDs[i]}`
+                `/clientData/id/${this.attendeeIDs[i]}`
             )
             .then((resp) => {
               let data = resp.data[0];
@@ -300,7 +300,7 @@ export default {
                 attendeeFirstName: data.firstName,
                 attendeeLastName: data.lastName,
                 attendeeCity: data.address.city,
-                attendeePhoneNumber: data.phoneNumbers[0].primaryPhone,
+                attendeePhoneNumber: data.phoneNumbers.primaryPhone,
               });
             });
         }

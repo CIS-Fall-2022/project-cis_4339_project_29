@@ -86,7 +86,7 @@
           <tbody class="divide-y divide-gray-300">
             <tr @click="editClient(client._id)" v-for="client in queryData" :key="client._id">
               <td class="p-2 text-left">{{ client.firstName + " " + client.lastName }}</td>
-              <td class="p-2 text-left">{{ client.phoneNumbers[0].primaryPhone }}</td>
+              <td class="p-2 text-left">{{ client.phoneNumbers.primaryPhone }}</td>
               <td class="p-2 text-left">{{ client.address.city }}</td>
             </tr>
           </tbody>
@@ -110,7 +110,7 @@ export default {
     };
   },
   mounted() {
-    let apiURL = import.meta.env.VITE_ROOT_API + `/cleintData/`;
+    let apiURL = import.meta.env.VITE_ROOT_API + `/clientData`;
     axios.get(apiURL).then((resp) => {
       this.queryData = resp.data;
     });
@@ -140,7 +140,7 @@ export default {
       this.phoneNumber = "";
 
       //get all entries
-      let apiURL = import.meta.env.VITE_ROOT_API + `/clientData/`;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/clientData`;
       axios.get(apiURL).then((resp) => {
         this.queryData = resp.data;
       });
