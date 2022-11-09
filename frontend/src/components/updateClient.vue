@@ -23,12 +23,10 @@ export default {
         middleName: "",
         lastName: "",
         email: "",
-        phoneNumbers: [
-          {
+        phoneNumbers: {
             primaryPhone: "",
-            secondaryPhone: "",
+            secondaryPhone: ""
           },
-        ],
         address: {
           line1: "",
           line2: "",
@@ -48,7 +46,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/primarydata/id/${this.$route.params.id}`
+          `/clientData/id/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data[0];
@@ -56,10 +54,10 @@ export default {
         this.client.middleName = data.middleName;
         this.client.lastName = data.lastName;
         this.client.email = data.email;
-        this.client.phoneNumbers[0].primaryPhone =
-          data.phoneNumbers[0].primaryPhone;
-        this.client.phoneNumbers[0].secondaryPhone =
-          data.phoneNumbers[0].secondaryPhone;
+        this.client.phoneNumbers.primaryPhone =
+          data.phoneNumbers.primaryPhone;
+        this.client.phoneNumbers.secondaryPhone =
+          data.phoneNumbers.secondaryPhone;
         this.client.address.line1 = data.address.line1;
         this.client.address.line2 = data.address.line2;
         this.client.address.city = data.address.city;
@@ -69,7 +67,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/eventdata/client/${this.$route.params.id}`
+          `/eventData/client/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data;
@@ -80,7 +78,7 @@ export default {
           });
         });
       });
-    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata`).then((resp) => {
+    axios.get(import.meta.env.VITE_ROOT_API + `/eventData`).then((resp) => {
       let data = resp.data;
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({
@@ -96,7 +94,7 @@ export default {
       return DateTime.fromISO(datetimeDB).plus({ days: 1 }).toLocaleString();
     },
     handleClientUpdate() {
-      let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.id}`;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/clientData/${this.id}`;
       axios.put(apiURL, this.client).then(() => {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
@@ -235,12 +233,12 @@ export default {
                 type="text"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-                v-model="client.phoneNumbers[0].primaryPhone"
+                v-model="client.phoneNumbers.primaryPhone"
               />
-              <span class="text-black" v-if="v$.client.phoneNumbers[0].primaryPhone.$error">
+              <span class="text-black" v-if="v$.client.phoneNumbers.primaryPhone.$error">
                 <p
                   class="text-red-700"
-                  v-for="error of v$.client.phoneNumbers[0].primaryPhone.$errors"
+                  v-for="error of v$.client.phoneNumbers.primaryPhone.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
               </span>
@@ -254,7 +252,7 @@ export default {
                 type="text"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-                v-model="client.phoneNumbers[0].secondaryPhone"
+                v-model="client.phoneNumbers.secondaryPhone"
               />
             </label>
           </div>
