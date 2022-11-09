@@ -23,10 +23,12 @@ export default {
         middleName: "",
         lastName: "",
         email: "",
-        phoneNumbers: {
+        phoneNumbers: [
+          {
             primaryPhone: "",
-            secondaryPhone: ""
+            secondaryPhone: "",
           },
+        ],
         address: {
           line1: "",
           line2: "",
@@ -54,9 +56,9 @@ export default {
         this.client.middleName = data.middleName;
         this.client.lastName = data.lastName;
         this.client.email = data.email;
-        this.client.phoneNumbers.primaryPhone =
+        this.client.phoneNumbers[0].primaryPhone =
           data.phoneNumbers.primaryPhone;
-        this.client.phoneNumbers.secondaryPhone =
+        this.client.phoneNumbers[0].secondaryPhone =
           data.phoneNumbers.secondaryPhone;
         this.client.address.line1 = data.address.line1;
         this.client.address.line2 = data.address.line2;
@@ -94,7 +96,7 @@ export default {
       return DateTime.fromISO(datetimeDB).plus({ days: 1 }).toLocaleString();
     },
     handleClientUpdate() {
-      let apiURL = import.meta.env.VITE_ROOT_API + `/clientData/${this.id}`;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.id}`;
       axios.put(apiURL, this.client).then(() => {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
@@ -233,12 +235,12 @@ export default {
                 type="text"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-                v-model="client.phoneNumbers.primaryPhone"
+                v-model="client.phoneNumbers[0].primaryPhone"
               />
-              <span class="text-black" v-if="v$.client.phoneNumbers.primaryPhone.$error">
+              <span class="text-black" v-if="v$.client.phoneNumbers[0].primaryPhone.$error">
                 <p
                   class="text-red-700"
-                  v-for="error of v$.client.phoneNumbers.primaryPhone.$errors"
+                  v-for="error of v$.client.phoneNumbers[0].primaryPhone.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
               </span>
@@ -252,7 +254,7 @@ export default {
                 type="text"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-                v-model="client.phoneNumbers.secondaryPhone"
+                v-model="client.phoneNumbers[0].secondaryPhone"
               />
             </label>
           </div>
