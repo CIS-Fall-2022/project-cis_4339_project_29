@@ -150,15 +150,15 @@ router.put("/:id", (req, res, next) => {
 router.put("/addAttendee/:id", (req, res, next) => {
     //only add attendee if not yet signed uo
     EventData.find( 
-        { eventID: req.params.id, attendees: req.body.clientID }, 
+        { _id: req.params.id, attendees: req.body._id }, 
         (error, data) => { 
             if (error) {
                 return next(error);
             } else {
                 if (data.length == 0) {
                     EventData.updateOne(
-                        { eventID: req.params.id }, 
-                        { $push: { attendees: req.body.clientID } },
+                        { _id: req.params.id }, 
+                        { $push: { attendees: req.body._id } },
                         (error, data) => {
                             if (error) {
                                 return next(error);
