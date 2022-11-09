@@ -48,7 +48,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/primarydata/id/${this.$route.params.id}`
+          `/clientData/id/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data[0];
@@ -57,9 +57,9 @@ export default {
         this.client.lastName = data.lastName;
         this.client.email = data.email;
         this.client.phoneNumbers[0].primaryPhone =
-          data.phoneNumbers[0].primaryPhone;
+          data.phoneNumbers.primaryPhone;
         this.client.phoneNumbers[0].secondaryPhone =
-          data.phoneNumbers[0].secondaryPhone;
+          data.phoneNumbers.secondaryPhone;
         this.client.address.line1 = data.address.line1;
         this.client.address.line2 = data.address.line2;
         this.client.address.city = data.address.city;
@@ -69,7 +69,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/eventdata/client/${this.$route.params.id}`
+          `/eventData/client/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data;
@@ -80,7 +80,7 @@ export default {
           });
         });
       });
-    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata`).then((resp) => {
+    axios.get(import.meta.env.VITE_ROOT_API + `/eventData`).then((resp) => {
       let data = resp.data;
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({

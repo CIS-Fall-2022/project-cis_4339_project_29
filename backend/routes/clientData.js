@@ -22,7 +22,7 @@ router.get("/", (req, res, next) => {
 // Created by Rahman Ali
 router.get("/id/:id", (req, res, next) => {
     ClientData.find( 
-        { clientID: req.params.id }, 
+        {_id: req.params.id }, 
         (error, data) => {
             if (error) {
                 return next(error);

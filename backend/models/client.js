@@ -14,6 +14,9 @@ let clientDataSchema = new Schema({
         type: String,
         require: true
     },
+    middleName: {
+        type: String
+    },
     lastName: {
         type: String,
         required: true
@@ -28,6 +31,27 @@ let clientDataSchema = new Schema({
         },
         secondaryPhone: {
         type: Number
+        }
+    },
+    address: {
+        line1: {
+            type: String,
+            required: true
+        },
+        line2: {
+            type: String,
+        },
+        city: {
+            type: String,
+            required: true
+        },
+        county: {
+            type: String,
+            required: true
+        },
+        zip: {
+            type: Number,
+            required: true
         }
     },
     organizationID: {
