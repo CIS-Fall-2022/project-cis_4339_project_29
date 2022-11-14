@@ -22,7 +22,7 @@ let eventDataSchema = new Schema({
     services:{
         type: Array
     },
-    date: {
+    eventDate: {
         type: Date,
         required: true
     },
