@@ -82,7 +82,7 @@ router.post("/", (req, res, next) => {
 // Created by Zachary Blackwell
 router.put("/:id", (req, res, next) => { 
     ClientData.findOneAndUpdate( 
-        { clientID: req.params.id }, 
+        { _id: req.params.id }, 
         req.body,
         (error, data) => {
             if (error) {
