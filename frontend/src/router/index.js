@@ -44,8 +44,7 @@ const routes = [
     {
         path: '/chart',
         name: 'chart',
-        props: true,
-        component: () => import('../components/chart.vue')
+        component: ChartView
     },
     
 ]
