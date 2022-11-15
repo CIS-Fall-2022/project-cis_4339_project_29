@@ -148,39 +148,10 @@ router.put("/:id", (req, res, next) => {
 
 //PUT add attendee to event using clinetID
 // Created by Zachary Blackwell
-// router.put("/addAttendee/:id", (req, res, next) => {
-//     //only add attendee if not yet signed uo
-//     EventData.find( 
-//         { _id: req.params.id, attendees: req.body._id }, 
-//         (error, data) => { 
-//             if (error) {
-//                 return next(error);
-//             } else {
-//                 if (data.length == 0) {
-//                     EventData.updateOne(
-//                         { _id: req.params.id }, 
-//                         { $push: { attendees: req.body._id } },
-//                         (error, data) => {
-//                             if (error) {
-//                                 return next(error);
-//                             } else {
-//                                 res.send('Client is added to event.');
-//                                 console.log('Event successfully updated!', data)
-//                             }
-//                         }
-//                     );
-//                 }
-                
-//             }
-//         }
-//     );
-// });
-
-
 router.put("/addAttendee/:id", (req, res, next) => {
     //only add attendee if not yet signed uo
     EventData.find( 
-        {_id: req.params.id, attendees: req.body._id }, 
+        { _id: req.params.id, attendees: req.body._id }, 
         (error, data) => { 
             if (error) {
                 return next(error);
@@ -199,12 +170,12 @@ router.put("/addAttendee/:id", (req, res, next) => {
                         }
                     );
                 }
-
+                
             }
         }
     );
-
 });
+
 
 // Created by Zachary Blackwell
 //DELETE event by eventID
