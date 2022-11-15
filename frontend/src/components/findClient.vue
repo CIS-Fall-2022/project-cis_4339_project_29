@@ -152,11 +152,10 @@ export default {
     },
     deleteClient(id){
               let apiURL = import.meta.env.VITE_ROOT_API +`/clientData/${id}`;
-              // let indexOfArrayItem = this.Grades.findIndex(i => i._id === id);
               if (window.confirm("Do you really want to delete?")) {
                   axios.delete(apiURL).then(() => {
                     alert("Client has successfully been deleted.");
-                    this.$router.back().catch((error) => {
+                    this.$router.go().catch((error) => {
                     console.log(error);
                   });
                 });

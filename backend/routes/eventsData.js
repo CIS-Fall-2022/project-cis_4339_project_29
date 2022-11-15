@@ -180,7 +180,7 @@ router.put("/addAttendee/:id", (req, res, next) => {
 // Created by Zachary Blackwell
 //DELETE event by eventID
 router.delete('/:id', (req, res, next) => {
-    EventData.findOneAndRemove({ eventID: req.params.id }, (error, data) => {
+    EventData.findOneAndRemove({ _id: req.params.id }, (error, data) => {
         if (error) {
             return next(error);
         } else {
