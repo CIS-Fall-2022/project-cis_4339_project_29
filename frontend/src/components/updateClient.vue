@@ -55,9 +55,9 @@ export default {
         this.client.middleName = data.middleName;
         this.client.lastName = data.lastName;
         this.client.email = data.email;
-        this.client.phoneNumbers[0].primaryPhone =
+        this.client.phoneNumbers.primaryPhone =
           data.phoneNumbers.primaryPhone;
-        this.client.phoneNumbers[0].secondaryPhone =
+        this.client.phoneNumbers.secondaryPhone =
           data.phoneNumbers.secondaryPhone;
         this.client.address.line1 = data.address.line1;
         this.client.address.line2 = data.address.line2;
@@ -107,7 +107,7 @@ export default {
       this.eventsChosen.forEach((event) => {
         let apiURL =
           import.meta.env.VITE_ROOT_API + `/eventData/addAttendee/` + event._id;
-        axios.put(apiURL, { attendee: this.$route.params.id }).then(() => {
+        axios.put(apiURL, { _id: this.$route.params.id }).then(() => {
           this.clientEvents = [];
           axios
             .get(
@@ -119,6 +119,7 @@ export default {
               for (let i = 0; i < data.length; i++) {
                 this.clientEvents.push({
                   eventName: data[i].eventName,
+                  eventDate: data[i].date
                 });
               }
             });
