@@ -6,11 +6,11 @@ const Schema = mongoose.Schema;
 //collection for eventData
 let eventDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
-    eventID: {
-        type: Number,
-        require: true,
-        unique: true
-    },
+    // eventID: {
+    //     type: Number,
+    //     require: true,
+    //     unique: true
+    // },
     eventName: {
         type: String,
         require: true
@@ -22,7 +22,7 @@ let eventDataSchema = new Schema({
     services:{
         type: Array
     },
-    eventDate: {
+    date: {
         type: Date,
         required: true
     },

@@ -86,7 +86,7 @@
           <tbody class="divide-y divide-gray-300">
             <tr @click="editClient(client._id)" v-for="client in queryData" :key="client._id">
               <td class="p-2 text-left">{{ client.firstName + " " + client.lastName }}</td>
-              <td class="p-2 text-left">{{ client.phoneNumber }}</td>
+              <td class="p-2 text-left">{{ client.phoneNumbers.primaryPhone }}</td>
               <td class="p-2 text-left">{{ client.email }}</td>
             </tr>
           </tbody>
@@ -138,7 +138,7 @@ export default {
       this.searchBy = "";
       this.firstName = "";
       this.lastName = "";
-      this.phoneNumber = "";
+      this.phoneNumbers = "";
 
       //get all entries
       let apiURL = import.meta.env.VITE_ROOT_API + `/clientData`;

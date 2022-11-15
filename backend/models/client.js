@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 //Worked on by entire team
 let clientDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
-    clientID: {
-        type: Number,
-        require: true,
-        unique: true
-    },
+    // clientID: {
+    //     type: Number,
+    //     require: true,
+    //     unique: true
+    // },
     firstName: {
         type: String,
         require: true
