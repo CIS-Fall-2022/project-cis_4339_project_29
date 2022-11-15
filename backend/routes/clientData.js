@@ -97,7 +97,7 @@ router.put("/:id", (req, res, next) => {
 //DELETE client by clientID
 // Created by Zachary Blackwell
 router.delete('/:id', (req, res, next) => {
-    ClientData.findOneAndRemove({ clientID: req.params.id }, (error, data) => {
+    ClientData.findOneAndRemove({ _id: req.params.id }, (error, data) => {
         if (error) {
             return next(error);
         } else {
