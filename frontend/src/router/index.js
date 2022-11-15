@@ -39,13 +39,15 @@ const routes = [
         name: 'eventdetails',
         props: true,
         component: () => import('../components/eventDetails.vue')
-    }
-    // {
-    //     path: '/specificevents',
-    //     name: 'specificevents',
-    //     props: true,
-    //     component: () => import('../components/specficevents.vue')
-    // }    
+    },
+    //Chart Vue 
+    {
+        path: '/chart',
+        name: 'chart',
+        props: true,
+        component: () => import('../components/chart.vue')
+    },
+    
 ]
 const router = createRouter({
     history: createWebHistory(), routes
