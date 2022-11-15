@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import ChartView from '@/views/ChartView.vue'
 
 const routes = [
     {
