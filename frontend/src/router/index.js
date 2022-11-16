@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ChartView from '@/views/ChartView.vue'
+// import ChartView from '@/views/ChartView.vue'
 
 const routes = [
     {
@@ -40,13 +40,13 @@ const routes = [
         name: 'eventdetails',
         props: true,
         component: () => import('../components/eventDetails.vue')
-    },
-    //Chart Vue 
-    {
-        path: '/chart',
-        name: 'chart',
-        component: ChartView
-    },
+    }
+    // //Chart Vue 
+    // {
+    //     path: '/chart',
+    //     name: 'chart',
+    //     component: ChartView
+    // },
     
 ]
 const router = createRouter({
