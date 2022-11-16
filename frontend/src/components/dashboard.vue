@@ -1,28 +1,19 @@
-<!-- <template>
+<template>
   <main>
     <div>
-      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">Welcome</h1>
+      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"> Welcome </h1>
     </div>
   </main>
-</template> -->
-
-<template>
   <section class="container">
-    <h1>Chart Examples</h1>
-    <div class="columns">
       <div class="column">
-        <h3>Planet Chart Demo</h3>
-        <PlanetChart />
-      </div>
-      <div class="column">
-        <h3>Bar Chart - Receiving Data from backend</h3>
+        <h3 class="font-bold text-4xl text-Black-700 tracking-widest text-center mt-10"> Bar Chart - Attendees Per Event</h3>
         <div>
           <div>
-            <EnrollmentBar
+            <AttendeeBar
               v-if="!loading && !error"
               :label="labels"
-              :chart-data="enrolled"
-            ></EnrollmentBar>
+              :chart-data="attendees"
+            ></AttendeeBar>
 
             <!-- Start of loading animation -->
             <div class="mt-40" v-if="loading">
@@ -54,7 +45,6 @@
           </div>
         </div>
       </div>
-    </div>
   </section>
 </template>
 
@@ -68,16 +58,16 @@
 // };
 
 import axios from "axios";
-import EnrollmentBar from "@/components/BarChartComponent.vue";
+import AttendeeBar from "@/components/BarChartComponent.vue";
 
 export default {
   components: {
-    EnrollmentBar,
+    AttendeeBar
   },
   data() {
     return {
       labels: [],
-      enrolled: [],
+      attendees: [],
       loading: false,
       error: null,
     };
@@ -87,11 +77,11 @@ export default {
       try {
         this.error = null;
         this.loading = true;
-        const url = `http://localhost:3001/enrollment`;
+        const url = import.meta.env.VITE_ROOT_API + `/eventData/count`;
         const response = await axios.get(url);
         //"re-organizing" - mapping json from the response
-        this.labels = response.data.map((item) => item.course);
-        this.enrolled = response.data.map((item) => item.enrollment);
+        this.labels = response.data.map((item) => item.eventName);
+        this.attendees = response.data.map((item) => item.attendees);
       } catch (err) {
         if (err.response) {
           // client received an error response (5xx, 4xx)

@@ -100,7 +100,7 @@ router.get("/count", (req, res, next) => {
             } else {
                 EventData.aggregate(
                     [{$project:{"_id": 0, "eventName": 1, "eventID": 1,
-                     "Number of Attendees":{$size:"$attendees"}}}],
+                     "attendees":{$size:"$attendees"}}}],
                     (error, data) => { 
                         if (error) {
                             return next(error);
