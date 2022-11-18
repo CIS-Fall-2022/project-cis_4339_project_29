@@ -18,8 +18,9 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
-
+//Zacahary Blackwell
 //Get Org_name from Org_id
+//Recieves the org ID from the .env and then looks through ther database for matching results
 router.get("/org_id", (req, res, next) => { 
     OrganizationData.find( 
         { organizationID: process.env.organizationID }, {organizationName:1},

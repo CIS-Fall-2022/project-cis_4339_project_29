@@ -58,32 +58,18 @@
 </template>
 
 <script>
-// export default {
-//   data() {
-//     return {
-//       organizationID: "",
-//       organizationName: ""
-//     };
-//   },
-//   created() {
-//     axios.get(import.meta.env.VITE_ROOT_API + `/organizationData/org_id`)
-//       .then((resp) => {
-//         let data = resp.data;
-//         this.organizationID = data.organizationID;
-//         this.organizationName = data.organizationName;
-//         console.log(data.organizationName);
-//       })
-//     }
-// }
 
+//created by zachary blackwell
 import axios from "axios";
 export default {
   name: "App",
+  //specifying what it wants from from the data that is returned
   data() {
     return{
       organizationName: ""
     }
   },
+  //sets up the org instance name as a variable from the api in the backend
   mounted(){
     axios.get(import.meta.env.VITE_ROOT_API+'/organizationData/org_id').then(response =>
     this.organizationName = response.data[0].organizationName
