@@ -226,7 +226,7 @@
               </thead>
               <tbody class="divide-y divide-gray-300">
                 <tr
-                  @click="editClient(client.attendeeID)"
+                  
                   v-for="client in attendeeData"
                   :key="client._id"
                 >
@@ -235,8 +235,8 @@
                   >{{ client.attendeeFirstName + " " + client.attendeeLastName }}</td>
                   <td class="p-2 text-left">{{ client.attendeeCity }}</td>
                   <td class="p-2 text-left">{{ client.attendeePhoneNumber }}</td>
-                  <button @click="editClient(client._id)" class="bg-blue-700 text-white rounded"> Edit </button>
-                  <button @click.prevent="deleteAttendee(client._id)" class="bg-red-700 text-white rounded btn btn-danger"> Delete </button>
+                  <button @click="editClient(client.attendeeID)" class="bg-blue-700 text-white rounded"> Edit </button>
+                  <button @click.prevent="deleteAttendee(client.attendeeID)" class="bg-red-700 text-white rounded btn btn-danger"> Delete </button>
                 </tr>
               </tbody>
             </table>
@@ -324,11 +324,11 @@ export default {
         });
       });
     },
-    deleteAttendee(clientID) {
+    deleteAttendee(attendeeID) {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventData/remove_client/${this.id}`;
-      axios.put(apiURL, this.client._id).then(() => {
-        alert("Update has been saved.");
-        this.$router.back().catch((error) => {
+      axios.put(apiURL, {_id: attendeeID}).then(() => {
+        alert("Client has been removed from the event.");
+        this.$router.go().catch((error) => {
           console.log(error);
         });
       });
