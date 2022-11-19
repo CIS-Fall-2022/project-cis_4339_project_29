@@ -26,11 +26,11 @@ let clientDataSchema = new Schema({
     },
     phoneNumbers: {
         primaryPhone: {
-        type: Number,
+        type: String,
         unique: true
         },
         secondaryPhone: {
-        type: Number
+        type: String
         }
     },
     address: {

@@ -109,7 +109,7 @@ export default {
       searchBy: "",
       firstName: "",
       lastName: "",
-      phoneNumber: "",
+      phoneNumber: ""
     };
   },
   mounted() {
