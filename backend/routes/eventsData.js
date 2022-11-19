@@ -179,17 +179,58 @@ router.put("/addAttendee/:id", (req, res, next) => {
 
 // Created by Zachary Blackwell
 //DELETE event by eventID
-router.delete('/:id', (req, res, next) => {
-    EventData.findOneAndRemove({ _id: req.params.id }, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: ('Event is deleted')
-            });
+// router.delete('/:id', (req, res, next) => {
+//     EventData.findOneAndRemove({ _id: req.params.id }, (error, data) => {
+//         if (error) {
+//             return next(error);
+//         } else {
+//             res.status(200).json({
+//                 msg: ('Event is deleted')
+//             });
+//         }
+//     });
+// });
+
+// Created by Zachary Blackwell
+//Delete client from event attendees
+router.put('/remove_client/:id', (req, res, next) => {
+    EventData.find( 
+        { _id: req.params.id, attendees: req.body._id }, 
+        (error, data) => { 
+            if (error) {
+                return next(error);
+            } else {
+                if (data.length == 1) {
+                    EventData.updateOne(
+                        { _id: req.params.id }, 
+                        { $pullAll: { attendees: [req.body._id] } },
+                        (error, data) => {
+                            if (error) {
+                                return next(error);
+                            } else {
+                                res.send('Client has been removed from event.');
+                                console.log('Client successfully removed from event!', data)
+                            }
+                        }
+                    );
+                }
+                
+            }
         }
-    });
+    );
 });
+
+router.put('/:id', (req, res, next) => {
+    EventData.findOneAndRemove({ _id: req.params.id }, (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                res.status(200).json({
+                    msg: ('Event is deleted')
+                });
+            }
+        });
+    });
 
 // error handler
 // Created By Joe Morris 
